@@ -1,6 +1,20 @@
-#!/bin/sh
+#!/bin/bash
 
 #sv start elasticsearch || exit 1
+
+source /etc/envvars
+env
+
+if [ -z "$PACKETBEATES_SERVICE_HOST" ]; then
+    PACKETBEATES_SERVICE_HOST=packetbeates
+fi
+
+if [ -z "$PACKETBEATES_SERVICE_PORT" ]; then
+    PACKETBEATES_SERVICE_PORT=9200
+fi
+
+sed -i "s|PACKETBEATES_SERVICE_HOST|$PACKETBEATES_SERVICE_HOST|" /etc/packetbeat/packetbeat.conf
+sed -i "s|PACKETBEATES_SERVICE_PORT|$PACKETBEATES_SERVICE_PORT|" /etc/packetbeat/packetbeat.conf
 
 exec 2>&1
 exec packetbeat -e -c /etc/packetbeat/packetbeat.conf 
