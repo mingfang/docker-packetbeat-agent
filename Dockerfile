@@ -12,11 +12,11 @@ CMD export > /etc/envvars && /usr/sbin/runsvdir-start
 RUN echo 'export > /etc/envvars' >> /root/.bashrc
 
 #Utilities
-RUN apt-get install -y vim less net-tools inetutils-ping wget curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common jq
+RUN apt-get install -y vim less net-tools inetutils-ping wget curl git telnet nmap socat dnsutils netcat tree htop unzip sudo software-properties-common jq psmisc
 
 RUN apt-get -y -q install libpcap0.8
 
-RUN wget https://github.com/packetbeat/packetbeat/releases/download/v0.4.3/packetbeat_0.4.3-1_amd64.deb && \
+RUN wget https://github.com/packetbeat/packetbeat/releases/download/v0.5.0/packetbeat_0.5.0-1_amd64.deb && \
     dpkg -i packetbeat*.deb && \
     rm packetbeat*.deb
 
