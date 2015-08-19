@@ -7,5 +7,13 @@ env
 
 cd /packetbeat
 
+if [ -n "$PACKETBEAT_SERVICE_HOST" ]; then
+  sed -i -e "s|hosts: .*|hosts: [\"$PACKETBEAT_SERVICE_HOST:9200\"]|" packetbeat.yml
+fi
+
+if [ -n "$PACKETBEAT_HTTP_PORTS" ]; then
+   sed -i -e "s|ports: \[80.*|ports: [$PACKETBEAT_HTTP_PORTS]|" packetbeat.yml
+fi
+
 exec 2>&1
 exec ./packetbeat -c /packetbeat/packetbeat.yml
