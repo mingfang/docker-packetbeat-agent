@@ -32,7 +32,8 @@ shipper:
 # keyword to sniff on all connected interfaces.
 interfaces:
  device: any
- type: pf_ring
+ type: af_packet
+ buffer_size_mb: 100
 
 ############################# Protocols ######################################
 protocols:
@@ -57,6 +58,7 @@ protocols:
 
     send_response: true
     include_body_for: ["application/json"]
+
   mysql:
 
     # Configure the ports where to listen for MySQL traffic. You can disable
