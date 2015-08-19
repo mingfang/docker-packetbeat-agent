@@ -16,4 +16,4 @@ if [ -n "$PACKETBEAT_HTTP_PORTS" ]; then
 fi
 
 exec 2>&1
-exec ./packetbeat -c /packetbeat/packetbeat.yml
+exec ./packetbeat -e -c /packetbeat/packetbeat.yml
