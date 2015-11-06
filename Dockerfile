@@ -18,7 +18,7 @@ RUN apt-get install -y vim less net-tools inetutils-ping wget curl git telnet nm
 RUN apt-get install -y libpcap0.8
 
 #Packetbeat Agent
-RUN wget -O - https://download.elastic.co/beats/packetbeat/packetbeat-1.0.0-beta2-x86_64.tar.gz | tar zx && \
+RUN wget -O - https://download.elastic.co/beats/packetbeat/packetbeat-1.0.0-rc1-x86_64.tar.gz | tar zx && \
     mv packetbeat* packetbeat
 ADD packetbeat.yml /packetbeat/packetbeat.yml
 
