@@ -5,15 +5,15 @@
 source /etc/envvars
 env
 
-cd /packetbeat
-
 if [ -n "$PACKETBEAT_SERVICE_HOST" ]; then
-  sed -i -e "s|hosts: .*|hosts: [\"$PACKETBEAT_SERVICE_HOST:9200\"]|" packetbeat.yml
+  sed -i -e "s|hosts: .*|hosts: [\"$PACKETBEAT_SERVICE_HOST:9200\"]|" /etc/packetbeat/packetbeat.yml
 fi
 
 if [ -n "$PACKETBEAT_HTTP_PORTS" ]; then
-   sed -i -e "s|ports: \[80.*|ports: [$PACKETBEAT_HTTP_PORTS]|" packetbeat.yml
+   sed -i -e "s|ports: \[80.*|ports: [$PACKETBEAT_HTTP_PORTS]|" /etc/packetbeat/packetbeat.yml
 fi
 
+curl -XPUT "http://$PACKETBEAT_SERVICE_HOST:9200/_template/packetbeat" -d@/etc/packetbeat/packetbeat.template.json
+
 exec 2>&1
-exec ./packetbeat -e -v -c /packetbeat/packetbeat.yml
+exec packetbeat

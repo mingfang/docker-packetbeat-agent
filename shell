@@ -1,1 +1,1 @@
-docker run --net=host -v `pwd`:/docker --rm -it packetbeat-agent /bin/bash
+docker run -e PACKETBEAT_SERVICE_HOST=packetbeat --net=host -v `pwd`:/docker -w /docker --rm -it packetbeat-agent /bin/bash
